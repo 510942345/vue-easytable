@@ -612,6 +612,10 @@
             // filter event
             filterMethod: Function
         },
+	    activated() {
+			// 每次激活时都回到保存的位置
+		    this.$el.querySelector('.v-table-rightview .v-table-body').scrollTop = this.currentPosition;
+	    },
         computed: {
 
             // 是否是复杂表头

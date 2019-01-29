@@ -4,6 +4,11 @@
 
 import utils from '../../src/utils/utils.js'
 export default {
+	data() {
+		return {
+			currentPosition: 0
+		}
+	},
     methods: {
         body1Mousewheel(e){
 
@@ -36,6 +41,8 @@ export default {
                 body1.scrollTop = body2.scrollTop;
             }
 
+            // 保存当前滚动位置
+            this.currentPosition = body2.scrollTop;
 
             view2.querySelector('.v-table-header').scrollLeft = body2.scrollLeft;
         },
