@@ -1,5 +1,5 @@
 {
-  "name": "vue-easytable",
+  "name": "vue-easytable-private",
   "version": "1.7.2",
   "description": "vue table component",
   "main": "libs/index.js",
