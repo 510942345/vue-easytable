@@ -10,7 +10,7 @@
             :columns="columns"
             :table-data="tableData"
             row-hover-color="#eee"
-            row-click-color="#edf7ff"
+            row-click-color="#00aff0"
     ></v-table>
 </template>
 

@@ -31,7 +31,19 @@ export default {
 
             this.rowMouseLeave && this.rowMouseLeave(rowIndex);
         },
-
+	    keydownHandle(rowIndex, previousItem, nextItem,  e) {
+		    if (e.keyCode === 38 && e.currentTarget.previousElementSibling) { // 键盘向上键
+			    e.preventDefault();
+			    e.cancelBubble = true;
+			    e.currentTarget.previousElementSibling.focus();
+			    this.rowCellClick(rowIndex - 1, previousItem);
+		    } else if (e.keyCode === 40 && e.currentTarget.nextElementSibling) {  // 键盘向下键
+			    e.preventDefault();
+			    e.cancelBubble = true;
+			    e.currentTarget.nextElementSibling.focus();
+			    this.rowCellClick(rowIndex + 1, nextItem);
+		    }
+	    },
         /*
          * 表头单元格单击事件
          * 注意：如果为复杂表头，field 为数组
@@ -98,7 +110,7 @@ export default {
             return result;
         },
 
-        setRowBgColor(newVal, oldVal, color){
+        setRowBgColor(newVal, oldVal, color, action){
 
             let el = this.$el;
 
@@ -124,11 +136,19 @@ export default {
                 if (oldRow) {
 
                     oldRow.style.backgroundColor = this.getHighPriorityBgColor(oldVal);
+	                if (action === 'click') {
+	                    oldRow.style.color = '#000000'
+	                }
                 }
 
                 if (newRow) {
-
+                    if(action === 'hover' && this.hoverRowIndex === this.clickRowIndex){
+                        return false
+                    }
                     newRow.style.backgroundColor = color;
+	                if (action === 'click') {
+	                    newRow.style.color = '#ffffff';
+	                }
                 }
             })
         },
@@ -145,12 +165,12 @@ export default {
 
         'hoverRowIndex': function (newVal, oldVal) {
 
-            this.setRowBgColor(newVal, oldVal, this.rowHoverColor);
+            this.setRowBgColor(newVal, oldVal, this.rowHoverColor, 'hover');
         },
 
         'clickRowIndex': function (newVal, oldVal) {
 
-            this.setRowBgColor(newVal, oldVal, this.rowClickColor);
+            this.setRowBgColor(newVal, oldVal, this.rowClickColor, 'click');
         }
     }
 }

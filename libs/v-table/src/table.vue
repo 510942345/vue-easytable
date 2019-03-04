@@ -292,8 +292,10 @@
                         <tbody>
                         <tr :key="rowIndex" v-for="(item,rowIndex) in internalTableData" class="v-table-row"
                             :style="[trBgColor(rowIndex+1)]"
+                            :tabindex="rowIndex"
                             @mouseenter.stop="handleMouseEnter(rowIndex)"
                             @mouseleave.stop="handleMouseOut(rowIndex)"
+                            @keydown="keydownHandle(rowIndex, internalTableData[rowIndex - 1], internalTableData[rowIndex + 1], $event)"
                         >
                             <td v-if="cellMergeInit(rowIndex,col.field,item,false)"
                                 v-for="(col,colIndex) in noFrozenCols"
