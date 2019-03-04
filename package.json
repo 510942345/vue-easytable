@@ -1,6 +1,6 @@
 {
   "name": "vue-easytable-private",
-  "version": "1.7.3",
+  "version": "1.8.0",
   "description": "vue table component",
   "main": "libs/index.js",
   "author": "https://github.com/510942345",
